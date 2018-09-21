@@ -1,0 +1,58 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: google/cloud-sdk
+    working_directory: ~/workspace
+    environment:
+      DEPLOYMENT_NAME: demo
+      CONTAINER_NAME: demo
+      PROJECT_ID: ci-cd-217118
+      CLUSTER_NAME: ci-cd
+      CLUSTER_NAME_STAG: ci-cd-stag
+      CLOUDSDK_COMPUTE_ZONE: us-central1-a
+      CONTAINER_NAME: ci-cd
+      IMAGE: ci-cd
+      REG_ID: ci-cd
+      REG_ID_PROD: ci-cd-prod
+      IMG_TAG: 0.1.0
+      PROJECT_NAME: ci-cd
+      DEPLOYMENT_ENVIRONMENT: staging
+    steps:
+      - checkout
+      - setup_remote_docker
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+
+      - run:
+          name: Install node packages
+          command: |
+            yarn install
+      
+      - run:
+          name: Start app
+          command: |
+            yarn start &
+      - run:
+          name: Run tests
+          command: |
+            yarn test
+      - restore_cache:
+          keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+          - v1-dependencies-
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+      
+      - run:
+          name: Build and Deploy
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "master" ]; then
+              sudo chmod +x ./deployment.sh && ./deployment.sh
+            fi  
+  
