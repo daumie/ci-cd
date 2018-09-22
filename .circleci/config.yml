@@ -2,8 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:7.10
-      - image: google/cloud-sdk
+      - image: wecs/circle-ci-gcloud-node
     working_directory: ~/workspace
     environment:
       DEPLOYMENT_NAME: demo
