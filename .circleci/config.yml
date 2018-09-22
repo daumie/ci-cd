@@ -10,7 +10,7 @@ jobs:
       PROJECT_ID: ci-cd-217118
       CLUSTER_NAME: ci-cd
       CLUSTER_NAME_STAG: ci-cd-stag
-      CLOUDSDK_COMPUTE_ZONE: us-central1-a
+      CLOUDSDK_COMPUTE_ZONE: us-west1-a	
       CONTAINER_NAME: ci-cd
       IMAGE: ci-cd
       REG_ID: ci-cd
