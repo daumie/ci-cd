@@ -5,8 +5,7 @@ jobs:
       - image: wecs/circle-ci-gcloud-node:0.1.0
     working_directory: ~/workspace
     environment:
-      DEPLOYMENT_NAME: demo
-      CONTAINER_NAME: demo
+      DEPLOYMENT_NAME: ci-cd
       PROJECT_ID: ci-cd-217118
       CLUSTER_NAME: ci-cd
       CLUSTER_NAME_STAG: ci-cd-stag
