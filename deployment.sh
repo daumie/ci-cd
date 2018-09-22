@@ -18,7 +18,7 @@ gcloud config set compute/zone $CLOUDSDK_COMPUTE_ZONE
 
 gcloud --quiet container clusters get-credentials $CLUSTER_NAME
 
-service docker start
+# service docker start
 
 docker build -t gcr.io/${PROJECT_ID}/${REG_ID}:$CIRCLE_SHA1 .
 
