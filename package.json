@@ -1,5 +1,5 @@
 {
-  "name": "gcloud-deploy-node-app",
+  "name": "@collins-b/ci-cd",
   "version": "1.0.0",
   "description": "Tutorial leading to a deployment of a simple node app to gcloud",
   "main": "server.js",
@@ -12,6 +12,9 @@
     "node"
   ],
   "author": "Collins",
+  "repository": {
+    "url": "git://github.com/collins-b/ci-cd.git"
+  },
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.17.2",
